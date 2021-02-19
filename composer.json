@@ -12,8 +12,9 @@
   ],
   "require": {
     "php": ">=7.1",
-    "phpguild/user-bundle": "1.0.*",
-    "api-platform/api-pack": "1.3.*"
+    "api-platform/api-pack": "1.3.*",
+    "lexik/jwt-authentication-bundle": "2.11.*",
+    "phpguild/user-bundle": "1.0.*"
   },
   "autoload": {
     "psr-4": {
