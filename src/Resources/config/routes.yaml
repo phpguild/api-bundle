@@ -1,0 +1,3 @@
+api_users_authentication:
+  path: /users/authentication
+  methods: [ POST ]
