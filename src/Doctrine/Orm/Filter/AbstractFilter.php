@@ -29,8 +29,8 @@ abstract class AbstractFilter extends AbstractContextAwareFilter
      */
     protected function applyJoins(QueryBuilder $queryBuilder): void
     {
-        foreach ($this->joins as $name => $alias) {
-            $queryBuilder->leftJoin($name, $alias);
+        foreach ($this->joins as $alias => $join) {
+            $queryBuilder->leftJoin($join, $alias);
         }
     }
 
@@ -51,11 +51,12 @@ abstract class AbstractFilter extends AbstractContextAwareFilter
         }
 
         $objectName = substr($propertyName, 0, $dot);
-        $this->joins[$alias . '.' . $objectName] = $objectName;
+        $objectAlias = $alias . '_' . $objectName;
+        $this->joins[$objectAlias] = $alias . '.' . $objectName;
         $partialPropertyName = substr($propertyName, $dot + 1);
 
         if ($partialPropertyName) {
-            return $this->getPropertyName($partialPropertyName, $objectName);
+            return $this->getPropertyName($partialPropertyName, $objectAlias);
         }
 
         return $propertyName;
