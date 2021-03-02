@@ -3,8 +3,9 @@
 ## Features
 
 ### Authentication
-- Endpoint `[POST] /users/authentication` for authenticate user with login/password and return JWT Bearer token
-- Endpoint `[GET,PUT] /users/me` for authenticated user informations
+- Endpoint `[POST] /oauth/authenticate` for authenticate user with login/password and return JWT Bearer token
+- Endpoint `[POST] /oauth/refresh_token` for authenticate user with refresh token and return JWT Bearer token
+- Endpoint `[GET,PUT] /users/me` for authenticated user information
 
 ### Filters
 - Filter Multisearch for search in multi fields `_search=Search%20term`
@@ -78,6 +79,10 @@ Edit `config/packages/security.yaml`
             dev:
                 pattern: ^/(_(profiler|wdt)|css|images|js)/
                 security: false
+            oauth_refresh_token:
+                pattern:  ^/oauth/refresh_token
+                stateless: true
+                anonymous: true
             api:
                 pattern:  ^/api
                 stateless: true
@@ -95,8 +100,9 @@ Edit `config/packages/security.yaml`
                 anonymous: true
                 lazy: true
     access_control:
+        - { path: ^/oauth/authenticate, methods: [ POST ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/oauth/refresh_token, methods: [ POST ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/api/sers/authentication, methods: [ POST ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
 
 
@@ -119,6 +125,15 @@ Edit `config/api_platform.yaml`
     phpguild_api:
         resource: '@PhpGuildApiBundle/Resources/config/routes.yaml'
         prefix: /api
+
+## Configure refresh Token
+
+    gesdinet_jwt_refresh_token:
+        firewall: api
+        ttl: 2592000
+        ttl_update: true
+        user_identity_field: id
+        user_provider: security.user.provider.concrete.token_user_provider
 
 ## Multisearch filter
 
