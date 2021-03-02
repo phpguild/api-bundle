@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e1c922c0d6607d885ab48ac5227da22c",
+    "content-hash": "c45e8e2837d2c7357970407977d3d447",
     "packages": [
         {
             "name": "api-platform/api-pack",
@@ -202,6 +202,63 @@
             "time": "2021-02-07T14:18:49+00:00"
         },
         {
+            "name": "beberlei/doctrineextensions",
+            "version": "v1.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/beberlei/DoctrineExtensions.git",
+                "reference": "008f162f191584a6c37c03a803f718802ba9dd9a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/beberlei/DoctrineExtensions/zipball/008f162f191584a6c37c03a803f718802ba9dd9a",
+                "reference": "008f162f191584a6c37c03a803f718802ba9dd9a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/orm": "^2.7",
+                "php": "^7.2 || ^8.0"
+            },
+            "require-dev": {
+                "friendsofphp/php-cs-fixer": "^2.14",
+                "nesbot/carbon": "*",
+                "phpunit/phpunit": "^7.0 || ^8.0 || ^9.0",
+                "symfony/yaml": "^4.2 || ^5.0",
+                "zf1/zend-date": "^1.12",
+                "zf1/zend-registry": "^1.12"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "DoctrineExtensions\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Steve Lacey",
+                    "email": "steve@steve.ly"
+                }
+            ],
+            "description": "A set of extensions to Doctrine 2 that add support for additional query functions available in MySQL, Oracle, PostgreSQL and SQLite.",
+            "keywords": [
+                "database",
+                "doctrine",
+                "orm"
+            ],
+            "support": {
+                "source": "https://github.com/beberlei/DoctrineExtensions/tree/v1.3.0"
+            },
+            "time": "2020-11-29T07:37:23+00:00"
+        },
+        {
             "name": "brick/math",
             "version": "0.9.2",
             "source": {
@@ -332,16 +389,16 @@
         },
         {
             "name": "doctrine/annotations",
-            "version": "1.11.1",
+            "version": "1.12.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/annotations.git",
-                "reference": "ce77a7ba1770462cd705a91a151b6c3746f9c6ad"
+                "reference": "b17c5014ef81d212ac539f07a1001832df1b6d3b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/annotations/zipball/ce77a7ba1770462cd705a91a151b6c3746f9c6ad",
-                "reference": "ce77a7ba1770462cd705a91a151b6c3746f9c6ad",
+                "url": "https://api.github.com/repos/doctrine/annotations/zipball/b17c5014ef81d212ac539f07a1001832df1b6d3b",
+                "reference": "b17c5014ef81d212ac539f07a1001832df1b6d3b",
                 "shasum": ""
             },
             "require": {
@@ -356,11 +413,6 @@
                 "phpunit/phpunit": "^7.5 || ^9.1.5"
             },
             "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.11.x-dev"
-                }
-            },
             "autoload": {
                 "psr-4": {
                     "Doctrine\\Common\\Annotations\\": "lib/Doctrine/Common/Annotations"
@@ -401,9 +453,9 @@
             ],
             "support": {
                 "issues": "https://github.com/doctrine/annotations/issues",
-                "source": "https://github.com/doctrine/annotations/tree/1.11.1"
+                "source": "https://github.com/doctrine/annotations/tree/1.12.1"
             },
-            "time": "2020-10-26T10:28:16+00:00"
+            "time": "2021-02-21T21:00:45+00:00"
         },
         {
             "name": "doctrine/cache",
@@ -1794,6 +1846,63 @@
             "time": "2021-01-14T21:52:44+00:00"
         },
         {
+            "name": "gesdinet/jwt-refresh-token-bundle",
+            "version": "v0.10.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/markitosgv/JWTRefreshTokenBundle.git",
+                "reference": "cad32f437db57b27226cc56430cace5f1cb27a54"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/markitosgv/JWTRefreshTokenBundle/zipball/cad32f437db57b27226cc56430cace5f1cb27a54",
+                "reference": "cad32f437db57b27226cc56430cace5f1cb27a54",
+                "shasum": ""
+            },
+            "require": {
+                "lexik/jwt-authentication-bundle": "^1.1|^2.0@dev",
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/framework-bundle": "~3.4|~4.0|~5.0",
+                "symfony/validator": "~3.4|~4.0|~5.0"
+            },
+            "require-dev": {
+                "doctrine/doctrine-bundle": "~1.4|~2.0",
+                "doctrine/mongodb-odm-bundle": "^3.4|^4.0",
+                "doctrine/orm": "^2.4.8",
+                "phpspec/phpspec": "^3.0|^4.0|^5.0|^6.0"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gesdinet\\JWTRefreshTokenBundle\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marcos Gómez Vilches",
+                    "email": "marcos@gesdinet.com"
+                }
+            ],
+            "description": "Implements a refresh token system over Json Web Tokens in Symfony",
+            "keywords": [
+                "jwt refresh token bundle symfony json web"
+            ],
+            "support": {
+                "issues": "https://github.com/markitosgv/JWTRefreshTokenBundle/issues",
+                "source": "https://github.com/markitosgv/JWTRefreshTokenBundle/tree/v0.10.1"
+            },
+            "time": "2021-01-04T18:28:24+00:00"
+        },
+        {
             "name": "knplabs/doctrine-behaviors",
             "version": "v2.0.8",
             "source": {
@@ -2023,24 +2132,26 @@
         },
         {
             "name": "laminas/laminas-zendframework-bridge",
-            "version": "1.1.1",
+            "version": "1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-zendframework-bridge.git",
-                "reference": "6ede70583e101030bcace4dcddd648f760ddf642"
+                "reference": "6cccbddfcfc742eb02158d6137ca5687d92cee32"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/6ede70583e101030bcace4dcddd648f760ddf642",
-                "reference": "6ede70583e101030bcace4dcddd648f760ddf642",
+                "url": "https://api.github.com/repos/laminas/laminas-zendframework-bridge/zipball/6cccbddfcfc742eb02158d6137ca5687d92cee32",
+                "reference": "6cccbddfcfc742eb02158d6137ca5687d92cee32",
                 "shasum": ""
             },
             "require": {
-                "php": "^5.6 || ^7.0 || ^8.0"
+                "php": "^7.3 || ^8.0"
             },
             "require-dev": {
                 "phpunit/phpunit": "^5.7 || ^6.5 || ^7.5 || ^8.1 || ^9.3",
-                "squizlabs/php_codesniffer": "^3.5"
+                "psalm/plugin-phpunit": "^0.15.1",
+                "squizlabs/php_codesniffer": "^3.5",
+                "vimeo/psalm": "^4.6"
             },
             "type": "library",
             "extra": {
@@ -2079,7 +2190,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2020-09-14T14:23:00+00:00"
+            "time": "2021-02-25T21:54:58+00:00"
         },
         {
             "name": "lcobucci/clock",
@@ -2699,22 +2810,23 @@
         },
         {
             "name": "phpguild/doctrine-extra-bundle",
-            "version": "V1.0.0",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpguild/doctrine-extra-bundle.git",
-                "reference": "bfd4269b92222c00bc046d1f73cc64f93317c85e"
+                "reference": "098d7126d5f903f9e9688bcc2b46e9530e3daad1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpguild/doctrine-extra-bundle/zipball/bfd4269b92222c00bc046d1f73cc64f93317c85e",
-                "reference": "bfd4269b92222c00bc046d1f73cc64f93317c85e",
+                "url": "https://api.github.com/repos/phpguild/doctrine-extra-bundle/zipball/098d7126d5f903f9e9688bcc2b46e9530e3daad1",
+                "reference": "098d7126d5f903f9e9688bcc2b46e9530e3daad1",
                 "shasum": ""
             },
             "require": {
+                "beberlei/doctrineextensions": "^1.3",
                 "knplabs/doctrine-behaviors": "^2.0",
                 "php": ">=7.1",
-                "symfony/orm-pack": "*"
+                "symfony/orm-pack": "^2.1"
             },
             "type": "symfony-bundle",
             "autoload": {
@@ -2735,22 +2847,22 @@
             "description": "Doctrine Extra Bundle",
             "support": {
                 "issues": "https://github.com/phpguild/doctrine-extra-bundle/issues",
-                "source": "https://github.com/phpguild/doctrine-extra-bundle/tree/V1.0.0"
+                "source": "https://github.com/phpguild/doctrine-extra-bundle/tree/v1.0.2"
             },
-            "time": "2021-01-12T12:08:11+00:00"
+            "time": "2021-02-26T12:26:39+00:00"
         },
         {
             "name": "phpguild/user-bundle",
-            "version": "v1.0.2",
+            "version": "v1.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpguild/user-bundle.git",
-                "reference": "51e8cd9b50955c5b359be5742dfebe18d9d7469a"
+                "reference": "ae006d240b705d159306edf3500c99a67353b1f7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpguild/user-bundle/zipball/51e8cd9b50955c5b359be5742dfebe18d9d7469a",
-                "reference": "51e8cd9b50955c5b359be5742dfebe18d9d7469a",
+                "url": "https://api.github.com/repos/phpguild/user-bundle/zipball/ae006d240b705d159306edf3500c99a67353b1f7",
+                "reference": "ae006d240b705d159306edf3500c99a67353b1f7",
                 "shasum": ""
             },
             "require": {
@@ -2777,9 +2889,9 @@
             "homepage": "https://github.com/phpguild/user-bundle",
             "support": {
                 "issues": "https://github.com/phpguild/user-bundle/issues",
-                "source": "https://github.com/phpguild/user-bundle/tree/v1.0.2"
+                "source": "https://github.com/phpguild/user-bundle/tree/v1.0.3"
             },
-            "time": "2021-02-19T20:13:44+00:00"
+            "time": "2021-02-26T12:31:52+00:00"
         },
         {
             "name": "psr/cache",
