@@ -63,42 +63,55 @@ Edit `config/packages/api_platform.yaml`
 Edit `config/packages/security.yaml`
 
     security:
+
         encoders:
             App\Entity\User:
                 algorithm: auto
+
         providers:
             authentication_user_provider:
                 entity:
                     class: App\Entity\User
                     property: username
+
             token_user_provider:
                 entity:
                     class: App\Entity\User
                     property: id
+
         firewalls:
             dev:
                 pattern: ^/(_(profiler|wdt)|css|images|js)/
                 security: false
+
             oauth_refresh_token:
                 pattern:  ^/oauth/refresh_token
                 stateless: true
                 anonymous: true
+    
+            oauth_authenticate:
+                pattern:  ^/oauth/authenticate
+                stateless: true
+                anonymous: true
+                json_login:
+                    provider: authentication_user_provider
+                    check_path: api_users_authentication
+                    success_handler: lexik_jwt_authentication.handler.authentication_success
+                    failure_handler: lexik_jwt_authentication.handler.authentication_failure
+    
             api:
-                pattern:  ^/api
+                pattern:  ^/
                 stateless: true
                 anonymous: true
                 provider: token_user_provider
                 guard:
                     authenticators:
                         - lexik_jwt_authentication.jwt_token_authenticator
-                json_login:
-                    provider: authentication_user_provider
-                    check_path: api_users_authentication
-                    success_handler: lexik_jwt_authentication.handler.authentication_success
-                    failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
             main:
                 anonymous: true
                 lazy: true
+
     access_control:
         - { path: ^/oauth/authenticate, methods: [ POST ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/oauth/refresh_token, methods: [ POST ], roles: IS_AUTHENTICATED_ANONYMOUSLY }
