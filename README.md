@@ -52,6 +52,7 @@ Edit `config/packages/api_platform.yaml`
             pagination_client_partial: true
             pagination_client_items_per_page: true
         collection:
+            exists_parameter_name: _exists
             order_parameter_name: _order
             pagination:
                 page_parameter_name: _page
