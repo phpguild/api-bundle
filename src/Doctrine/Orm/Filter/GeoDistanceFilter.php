@@ -18,8 +18,11 @@ final class GeoDistanceFilter extends AbstractFilter
 {
     public const PROPERTY_NAME = '_distance';
 
-    private string $latPropertyName;
-    private string $lngPropertyName;
+    /** @var string $latPropertyName */
+    private $latPropertyName;
+
+    /** @var string $lngPropertyName */
+    private $lngPropertyName;
 
     /**
      * GeoDistanceFilter constructor.

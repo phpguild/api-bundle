@@ -12,7 +12,8 @@ use Doctrine\ORM\QueryBuilder;
  */
 abstract class AbstractFilter extends AbstractContextAwareFilter
 {
-    private array $joins = [];
+    /** @var array $joins */
+    private $joins = [];
 
     /**
      * initJoins

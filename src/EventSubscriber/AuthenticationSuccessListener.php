@@ -4,10 +4,7 @@ declare(strict_types=1);
 
 namespace PhpGuild\ApiBundle\EventSubscriber;
 
-use ApiPlatform\Core\Api\IriConverterInterface;
 use ApiPlatform\Core\Api\UrlGeneratorInterface;
-use ApiPlatform\Core\JsonLd\ContextBuilderInterface;
-use App\Entity\User;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Serializer\SerializerInterface;
@@ -20,14 +17,21 @@ use Symfony\Component\String\UnicodeString;
  */
 class AuthenticationSuccessListener
 {
-    private int $ttl;
-    private SerializerInterface $serializer;
+    /** @var int|mixed $ttl */
+    private $ttl;
+
+    /** @var SerializerInterface $serializer */
+    private $serializer;
+
+    /** @var UrlGeneratorInterface $urlGenerator */
+    private $urlGenerator;
 
     /**
      * AuthenticationSuccessListener constructor.
      *
      * @param ParameterBagInterface $parameterBag
      * @param SerializerInterface   $serializer
+     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
         ParameterBagInterface $parameterBag,
@@ -43,17 +47,13 @@ class AuthenticationSuccessListener
      * onAuthenticationSuccessResponse
      *
      * @param AuthenticationSuccessEvent $event
-     *
-     * @throws \JsonException
      */
     public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event): void
     {
         //@TODO Find best way
         $userData = json_decode(
             $this->serializer->serialize($event->getUser(), 'json'),
-            true,
-            512,
-            JSON_THROW_ON_ERROR
+            true
         );
 
         $data = $event->getData();

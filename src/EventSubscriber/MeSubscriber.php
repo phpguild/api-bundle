@@ -16,7 +16,8 @@ use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInt
  */
 class MeSubscriber implements EventSubscriberInterface
 {
-    private TokenStorageInterface $tokenStorage;
+    /** @var TokenStorageInterface $tokenStorage */
+    private $tokenStorage;
 
     /**
      * UserMeSubscriber constructor.
