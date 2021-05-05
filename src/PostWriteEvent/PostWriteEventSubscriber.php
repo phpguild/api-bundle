@@ -5,13 +5,9 @@ declare(strict_types=1);
 namespace PhpGuild\ApiBundle\PostWriteEvent;
 
 use ApiPlatform\Core\EventListener\EventPriorities;
-use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\ViewEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
-use Symfony\Component\Mailer\Exception\TransportExceptionInterface;
 
 /**
  * Class PostWriteEventSubscriber
@@ -78,7 +74,7 @@ class PostWriteEventSubscriber implements EventSubscriberInterface
         if (!method_exists($this->service, $this->action)) {
             throw new PostWriteEventException(sprintf(
                 'Missing method %s of service %s.',
-                get_class($this->service),
+                \get_class($this->service),
                 $this->action
             ));
         }
