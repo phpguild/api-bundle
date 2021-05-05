@@ -1,0 +1,4 @@
+user_account_is_not_confirmed: Votre compte n'est pas confirmé, veuillez suivre les instructions reçues par email.
+user_account_is_not_active: Votre compte n'est pas activé, veuillez contacter un administrateur.
+user_account_is_disable: Votre compte n'est pas activé, veuillez contacter un administrateur.
+user_account_is_deleted: Ce compte n'existe pas.

@@ -5,7 +5,7 @@ services:
 
   PhpGuild\ApiBundle\:
     resource: '../../*'
-    exclude: '../../{DependencyInjection,Resources,PhpGuildApiBundle.php}'
+    exclude: '../../{DependencyInjection,Resources,PostWriteEvent,PhpGuildApiBundle.php}'
 
   PhpGuild\ApiBundle\EventSubscriber\AuthenticationSuccessListener:
     tags:

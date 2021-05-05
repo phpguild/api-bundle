@@ -94,6 +94,7 @@ Edit `config/packages/security.yaml`
                 pattern:  ^/oauth/authenticate
                 stateless: true
                 anonymous: true
+                user_checker: PhpGuild\UserBundle\Security\UserChecker
                 json_login:
                     provider: authentication_user_provider
                     check_path: api_users_authentication
@@ -134,11 +135,11 @@ Edit `config/packages/lexik_jwt_authentication.yaml`
                 prefix:  Bearer
                 name:    Authorization
 
-Edit `config/api_platform.yaml`
+Edit `config/routes.yaml`
 
-    phpguild_api:
-        resource: '@PhpGuildApiBundle/Resources/config/routes.yaml'
-        prefix: /api
+    phpguild_api_oauth:
+        resource: '@PhpGuildApiBundle/Resources/config/routes/oauth.yaml'
+        prefix: /oauth
 
 ## Configure refresh Token
 
