@@ -4,18 +4,9 @@ declare(strict_types=1);
 
 namespace PhpGuild\ApiBundle\EventSubscriber;
 
-use ApiPlatform\Core\Api\UrlGeneratorInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationFailureEvent;
 use PhpGuild\ApiBundle\Http\RequestHandler;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use ApiPlatform\Core\Bridge\Symfony\Routing\RouteNameGenerator;
-use ApiPlatform\Core\Api\OperationType;
-use Symfony\Component\String\UnicodeString;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 /**
  * Class AuthenticationFailureListener
@@ -40,7 +31,7 @@ class AuthenticationFailureListener
      *
      * @param AuthenticationFailureEvent $event
      *
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function onAuthenticationFailureResponse(AuthenticationFailureEvent $event): void
     {

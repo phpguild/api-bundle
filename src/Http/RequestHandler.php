@@ -4,12 +4,10 @@ declare(strict_types=1);
 
 namespace PhpGuild\ApiBundle\Http;
 
-use ApiPlatform\Core\Problem\Serializer\ErrorNormalizerTrait;
-use Symfony\Component\ErrorHandler\Exception\FlattenException;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Serializer\Normalizer\CacheableSupportsMethodInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
@@ -56,7 +54,7 @@ final class RequestHandler
      *
      * @return array
      *
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function normalize($data): array
     {
@@ -73,7 +71,7 @@ final class RequestHandler
      *
      * @return JsonResponse
      *
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function getResponse($data, int $status = 200): JsonResponse
     {

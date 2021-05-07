@@ -4,14 +4,10 @@ declare(strict_types=1);
 
 namespace PhpGuild\ApiBundle\EventSubscriber;
 
-use ApiPlatform\Core\Api\UrlGeneratorInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
-use PhpGuild\ApiBundle\Response\NormalizedResponse;
 use PhpGuild\ApiBundle\Http\RequestHandler;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
+use Symfony\Component\Serializer\Exception\ExceptionInterface;
 
 /**
  * Class AuthenticationSuccessListener
@@ -43,7 +39,7 @@ class AuthenticationSuccessListener
      *
      * @param AuthenticationSuccessEvent $event
      *
-     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
+     * @throws ExceptionInterface
      */
     public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event): void
     {

@@ -66,9 +66,9 @@ final class JsonErrorNormalizer implements NormalizerInterface, CacheableSupport
     public function supportsNormalization($data, string $format = null): bool
     {
         return self::FORMAT === $format && (
-                $data instanceof \Exception
-                || $data instanceof FlattenException
-            );
+            $data instanceof \Exception
+            || $data instanceof FlattenException
+        );
     }
 
     /**
