@@ -6,71 +6,56 @@ namespace PhpGuild\ApiBundle\EventSubscriber;
 
 use ApiPlatform\Core\Api\UrlGeneratorInterface;
 use Lexik\Bundle\JWTAuthenticationBundle\Event\AuthenticationSuccessEvent;
+use PhpGuild\ApiBundle\Response\NormalizedResponse;
+use PhpGuild\ApiBundle\Http\RequestHandler;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\Serializer\SerializerInterface;
-use ApiPlatform\Core\Bridge\Symfony\Routing\RouteNameGenerator;
-use ApiPlatform\Core\Api\OperationType;
-use Symfony\Component\String\UnicodeString;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Serializer\Normalizer\NormalizerInterface;
 
 /**
  * Class AuthenticationSuccessListener
  */
 class AuthenticationSuccessListener
 {
+    /** @var RequestHandler $requestHandler */
+    private $requestHandler;
+
     /** @var int|mixed $ttl */
     private $ttl;
-
-    /** @var SerializerInterface $serializer */
-    private $serializer;
-
-    /** @var UrlGeneratorInterface $urlGenerator */
-    private $urlGenerator;
 
     /**
      * AuthenticationSuccessListener constructor.
      *
+     * @param RequestHandler        $requestHandler
      * @param ParameterBagInterface $parameterBag
-     * @param SerializerInterface   $serializer
-     * @param UrlGeneratorInterface $urlGenerator
      */
     public function __construct(
-        ParameterBagInterface $parameterBag,
-        SerializerInterface $serializer,
-        UrlGeneratorInterface $urlGenerator
+        RequestHandler $requestHandler,
+        ParameterBagInterface $parameterBag
     ) {
+        $this->requestHandler = $requestHandler;
         $this->ttl = $parameterBag->get('lexik_jwt_authentication.token_ttl');
-        $this->serializer = $serializer;
-        $this->urlGenerator = $urlGenerator;
     }
 
     /**
      * onAuthenticationSuccessResponse
      *
      * @param AuthenticationSuccessEvent $event
+     *
+     * @throws \Symfony\Component\Serializer\Exception\ExceptionInterface
      */
     public function onAuthenticationSuccessResponse(AuthenticationSuccessEvent $event): void
     {
-        //@TODO Find best way
-        $userData = json_decode(
-            $this->serializer->serialize($event->getUser(), 'json'),
-            true
-        );
-
         $data = $event->getData();
 
-        $resourceName = (new UnicodeString((new \ReflectionClass($event->getUser()))->getShortName()))->snake();
-
-        $event->setData(array_merge([
-            '@id' => $this->urlGenerator->generate(
-                RouteNameGenerator::generate('get', (string) $resourceName, OperationType::ITEM),
-                [ 'id' => $userData['id'] ]
-            ),
+        $event->setData($this->requestHandler->normalize($event->getUser()) + [
             'token' => [
                 'access' => $data['token'],
                 'type' => 'BEARER',
                 'expires_in' => $this->ttl,
                 'refresh' => $data['refresh_token'],
             ],
-        ], $userData));
+        ]);
     }
 }

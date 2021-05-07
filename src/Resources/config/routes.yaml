@@ -1,7 +1,0 @@
-api_users_authentication:
-  path: /authenticate
-  methods: [ POST ]
-
-gesdinet_jwt_refresh_token:
-  path: /refresh_token
-  controller: gesdinet.jwtrefreshtoken::refresh

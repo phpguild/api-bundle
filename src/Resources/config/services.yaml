@@ -12,3 +12,13 @@ services:
       - name: kernel.event_listener
         event: lexik_jwt_authentication.on_authentication_success
         method: onAuthenticationSuccessResponse
+
+  PhpGuild\ApiBundle\EventSubscriber\AuthenticationFailureListener:
+    tags:
+      - name: kernel.event_listener
+        event: lexik_jwt_authentication.on_authentication_failure
+        method: onAuthenticationFailureResponse
+
+  PhpGuild\ApiBundle\Serializer\JsonErrorNormalizer:
+    arguments: [ '%kernel.debug%' ]
+    tags: [ { name: serializer.normalizer, priority: -800 } ]
