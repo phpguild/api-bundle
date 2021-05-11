@@ -53,5 +53,13 @@ class AuthenticationSuccessListener
                 'refresh' => $data['refresh_token'],
             ],
         ]);
+
+        $event->getResponse()->headers->add([
+            'content-type' => sprintf(
+                '%s; charset=%s',
+                $this->requestHandler->getContentType(),
+                $this->requestHandler->getCharset()
+            ),
+        ]);
     }
 }

@@ -58,9 +58,7 @@ final class RequestHandler
      */
     public function normalize($data): array
     {
-        $format = $this->request->getFormat($this->request->headers->get('accept')) ?: 'json';
-
-        return $this->normalizer->normalize($data, $format);
+        return $this->normalizer->normalize($data, $this->request->getFormat($this->getContentType()));
     }
 
     /**
@@ -75,6 +73,36 @@ final class RequestHandler
      */
     public function getResponse($data, int $status = 200): JsonResponse
     {
-        return new JsonResponse($this->normalize($data), $status);
+        return new JsonResponse($this->normalize($data), $status, [
+            'content-type' => sprintf('%s; charset=%s', $this->getContentType(), $this->getCharset()),
+        ]);
+    }
+
+    /**
+     * getCharset
+     *
+     * @return string
+     */
+    public function getCharset(): string
+    {
+        return 'utf-8';
+    }
+
+    /**
+     * getContentType
+     *
+     * @return string
+     */
+    public function getContentType(): string
+    {
+        $accept = $this->request->headers->get('accept');
+
+        switch ($accept) {
+            case 'application/json':
+            case 'application/ld+json':
+                return $accept;
+            default:
+                return 'application/json';
+        }
     }
 }

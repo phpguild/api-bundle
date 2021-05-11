@@ -35,6 +35,8 @@ class AuthenticationFailureListener
      */
     public function onAuthenticationFailureResponse(AuthenticationFailureEvent $event): void
     {
-        $event->setResponse($this->requestHandler->getResponse($event->getException(), 400));
+        $event->setResponse(
+            $this->requestHandler->getResponse($event->getException(), 400)
+        );
     }
 }
