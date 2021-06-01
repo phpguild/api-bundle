@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PhpGuild\ApiBundle\Http;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Exception\ExceptionInterface;
@@ -67,13 +68,16 @@ final class RequestHandler
      * @param     $data
      * @param int $status
      *
-     * @return JsonResponse
+     * @return Response
      *
      * @throws ExceptionInterface
      */
-    public function getResponse($data, int $status = 200): JsonResponse
+    public function getResponse($data, int $status = 200): Response
     {
-        return new JsonResponse($this->normalize($data), $status, [
+        $data = $this->normalize($data);
+        $responseFormat = \is_array($data) ? JsonResponse::class : Response::class;
+
+        return new $responseFormat($data, $status, [
             'content-type' => sprintf('%s; charset=%s', $this->getContentType(), $this->getCharset()),
         ]);
     }
