@@ -53,11 +53,11 @@ final class RequestHandler
      *
      * @param $data
      *
-     * @return array
+     * @return array|null
      *
      * @throws ExceptionInterface
      */
-    public function normalize($data): array
+    public function normalize($data): ?array
     {
         return $this->normalizer->normalize($data, $this->request->getFormat($this->getContentType()));
     }
