@@ -77,6 +77,7 @@ final class GeoDistanceFilter extends AbstractFilter
         $latValue = $value['lat'] ?? null;
         $lngValue = $value['lng'] ?? null;
         $nearValue = $value['near'] ?? null;
+        $orderValue = $value['order'] ?? null;
 
         if (null === $latValue || null === $lngValue) {
             return;
@@ -111,7 +112,9 @@ final class GeoDistanceFilter extends AbstractFilter
             $queryBuilder->andWhere($qbSearch);
         }
 
-        $queryBuilder->addOrderBy($distancePropertyName, 'ASC');
+        if (\in_array(strtoupper((string) $orderValue), [ 'ASC', 'DESC' ], true)) {
+            $queryBuilder->addOrderBy($distancePropertyName, $orderValue);
+        }
 
         $this->applyJoins($queryBuilder);
     }
